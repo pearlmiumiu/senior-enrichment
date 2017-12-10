@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import createNewCampus from './CreateNewCampus';
+import CreateNewCampus from './CreateNewCampus';
 import store from '../store';
 import campusReducer from '../reducers/campusReducer';
 import {fetchCampuses, addNewCampus} from '../reducers/campusReducer';
@@ -49,7 +49,7 @@ export default class Campuses extends Component {
 
         
         <div className="add-a-new-campus">
-           <addNewCampus/>
+           <CreateNewCampus/>
         </div>
 
       </div>

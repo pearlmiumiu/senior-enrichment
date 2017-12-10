@@ -1,32 +1,42 @@
-import axios from 'axios'
+import axios from 'axios';
 
 //initial state
 const initialState={
-	campuses:[]
-	// newCampus:''
+	campuses:[],
+    newCampusNameEntry:''
 	// // campusId: [],
 
 
-}
+};
 
 //action type for campus
 const GOT_ALL_CAMPUSES_FROM_SERVER='GOT_ALL_CAMPUSES_FROM_SERVER';
-
- const ADD_CAMPUS='ADD_CAMPUS';
+const WRITE_CAMPUS_NAME='WRITE_CAMPUS_NAME';
+const CREATE_CAMPUS = 'CREATE_CAMPUS';
 // const UPDATE_CAMPUS='UPDATE_CAMPUS';
 // const DELETE_CAMPUS='DELETE_CAMPUS';
 
 
 //action creator
 export function gotAllCampusesFromServer(campuses){
-	return {type: GOT_ALL_CAMPUSES_FROM_SERVER, campuses}
+	return {type: GOT_ALL_CAMPUSES_FROM_SERVER,  campuses}
 }
-// export function addCampus(newCampus){
-// 	return {
-// 		type:ADD_CAMPUS,
-// 		newCampus: newCampus
-// 	}
-// }
+
+export function writeCampusName(newCampusName){
+	return {
+		type: 'WRITE_CAMPUS_NAME',
+		newCampusName
+	};
+}
+
+
+export function createTheCampus(campus) {
+  console.log('crete the campus =====', campus);
+  return {
+    type: CREATE_CAMPUS,
+    campus
+  };
+}
 
 // export function updateCampus(campus){
 // 	return {
@@ -59,16 +69,20 @@ export function fetchCampuses(){
 
 
 //thunk creator for addCampus
-// export function addNewCampus(campusData){
-// 	return function thunk(dispatch){
-// 		return axios.post('/api/campuses/{campusId}')
-// 					.then(res=>res.data)
-// 					.then(newCampus=>{
-// 						const action=addCampus(newCampus)
-// 						dispath(action)
-// 					})
-// 	}
-// }
+
+export function createCampus(campus) {
+  console.log(' createCampus 1 ======', campus);
+  return function thunk(dispatch) {
+  	console.log(' createCampus 2 ======', dispatch);
+    return axios.post('/api/campuses', campus)
+      .then(res => res.data)
+      .then( newCampus => {
+      	console.log(' createCampus 3 ======', newCampus);
+        const action = createTheCampus(newCampus);
+        dispatch(action);
+      } );
+  };
+};
 
 
 // //thunk creator for updateCampus
@@ -98,14 +112,14 @@ export function fetchCampuses(){
 
 //reducer
 
-export default function reducer(state=initialState, action){
+export default function reducer(state=initialState, action) {
 	switch(action.type){
 		case GOT_ALL_CAMPUSES_FROM_SERVER:
-				return  Object.assign({}, state, {campuses:action.campuses})
-				//return {...state, campuses: action.campuses}
-		case ADD_CAMPUS:
-				return Object.assign({}, state, newCampus:action.newCampus)
-		// 		//return {...state, newCampus:action.newCampus}
+				return  Object.assign({}, state, {campuses:action.campuses});
+		case WRITE_CAMPUS_NAME:
+				return Object.assign({}, state, {newCampusNameEntry:action.newCampusName});
+		case CREATE_CAMPUS:
+      			return Object.assign({}, state, {campuses: action.campus});//state.campuses.concat(newCampusName)});
 		// case UPDATE_CAMPUS:
   //               return initialState.map(campus=>{
   //               	if (+campus.id===+action.campuses.id) return action.campus
@@ -115,7 +129,7 @@ export default function reducer(state=initialState, action){
 		// 		return Object.assign({}, state, campus:action.id)
 
 		default:
-			return state
+			return state;
 
 	}
-}
+};
