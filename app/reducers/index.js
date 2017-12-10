@@ -5,15 +5,15 @@ import campusReducer from './campusReducer'
 
 
 
-//const rootReducer = combineReducers({campusReducer, studentReducer})
+const rootReducer = combineReducers({campusReducer, studentReducer})
 
-const initialState = {}
+// const initialState = {}
  
-const rootReducer = function(state = initialState, action) {
-  switch(action.type) {
-    default: return state
-  }
-};
+// const rootReducer = function(state = initialState, action) {
+//   switch(action.type) {
+//     default: return state
+//   }
+// };
  
 
 export default rootReducer;

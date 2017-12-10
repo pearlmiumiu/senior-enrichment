@@ -3,16 +3,16 @@ import axios from 'axios'
 //initial state
 const initialState={
 	campuses:[]
-	// newCampus:'',
-	// campusId: [],
+	// newCampus:''
+	// // campusId: [],
 
 
 }
 
 //action type for campus
 const GOT_ALL_CAMPUSES_FROM_SERVER='GOT_ALL_CAMPUSES_FROM_SERVER';
-//const GOT_CAMPUS_FROM_SERVER='GOT_CAMPUS_FROM_SERVER';
-// const ADD_CAMPUS='ADD_CAMPUS';
+
+ const ADD_CAMPUS='ADD_CAMPUS';
 // const UPDATE_CAMPUS='UPDATE_CAMPUS';
 // const DELETE_CAMPUS='DELETE_CAMPUS';
 
@@ -23,7 +23,7 @@ export function gotAllCampusesFromServer(campuses){
 }
 // export function addCampus(newCampus){
 // 	return {
-// 		type:GOT_CAMPUS_FROM_SERVER,
+// 		type:ADD_CAMPUS,
 // 		newCampus: newCampus
 // 	}
 // }
@@ -55,6 +55,8 @@ export function fetchCampuses(){
 					})
 	}
 }
+
+
 
 //thunk creator for addCampus
 // export function addNewCampus(campusData){
@@ -99,10 +101,10 @@ export function fetchCampuses(){
 export default function reducer(state=initialState, action){
 	switch(action.type){
 		case GOT_ALL_CAMPUSES_FROM_SERVER:
-				return  action.campuses
+				return  Object.assign({}, state, {campuses:action.campuses})
 				//return {...state, campuses: action.campuses}
-		// case ADD_CAMPUS:
-		// 		return Object.assign({}, state, newCampus:action.newCampus)
+		case ADD_CAMPUS:
+				return Object.assign({}, state, newCampus:action.newCampus)
 		// 		//return {...state, newCampus:action.newCampus}
 		// case UPDATE_CAMPUS:
   //               return initialState.map(campus=>{

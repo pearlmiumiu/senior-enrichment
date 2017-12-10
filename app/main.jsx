@@ -8,6 +8,7 @@ import store from './store'
 import ReactDOM from 'react-dom'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
+
 //console.log('hello ------------');
 ReactDOM.render(
 	<Provider store={store}>
