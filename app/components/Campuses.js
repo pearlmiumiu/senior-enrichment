@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CreateNewCampus from './CreateNewCampus';
 import store from '../store';
 import campusReducer from '../reducers/campusReducer';
-import {fetchCampuses, addNewCampus} from '../reducers/campusReducer';
+import {fetchCampuses} from '../reducers/campusReducer';
 
 export default class Campuses extends Component {
 
@@ -28,12 +28,12 @@ export default class Campuses extends Component {
   
   render() {
     const campuses = this.state.campusReducer.campuses;
-    //console.log("all campuses list here----!!!", campuses);
+    
     return(
       <div className="all-campuses">
-        <h3>HELLO ---------Campuses</h3>
+        
         <div className="all-campus-container">
-          {  
+          { 
            campuses.map(campus => {
                   return (<div key={campus.id} className="each-campus-icon">
                     <Link to={`/campuses/${campus.id}`}>

@@ -7,7 +7,6 @@ import {createTheCampus, writeCampusName, createCampus} from '../reducers/campus
 export default class CreateNewCampus extends Component {
 
 	constructor(){
-		console.log('got here =====');
 		super();
 		this.state=store.getState();
 
@@ -31,7 +30,7 @@ export default class CreateNewCampus extends Component {
     handleSubmit(event){
     	//console.log('event submit happend......', event);
     	event.preventDefault();
-    	store.dispatch(createCampus(this.state.campusReducer.newCampusNameEntry));
+    	store.dispatch(createCampus({name:this.state.campusReducer.newCampusNameEntry}));
     }
 
 	

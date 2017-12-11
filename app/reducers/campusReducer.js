@@ -3,8 +3,8 @@ import axios from 'axios';
 //initial state
 const initialState={
 	campuses:[],
-    newCampusNameEntry:''
-	// // campusId: [],
+    newCampusNameEntry:'',
+	//campusId: [],
 
 
 };
@@ -31,10 +31,10 @@ export function writeCampusName(newCampusName){
 
 
 export function createTheCampus(campus) {
-  console.log('crete the campus =====', campus);
+  
   return {
     type: CREATE_CAMPUS,
-    campus
+    campuses: [campus]
   };
 }
 
@@ -119,7 +119,8 @@ export default function reducer(state=initialState, action) {
 		case WRITE_CAMPUS_NAME:
 				return Object.assign({}, state, {newCampusNameEntry:action.newCampusName});
 		case CREATE_CAMPUS:
-      			return Object.assign({}, state, {campuses: action.campus});//state.campuses.concat(newCampusName)});
+				
+      			return Object.assign({}, state, {campuses: state.campuses.concat(action.campuses)});
 		// case UPDATE_CAMPUS:
   //               return initialState.map(campus=>{
   //               	if (+campus.id===+action.campuses.id) return action.campus
