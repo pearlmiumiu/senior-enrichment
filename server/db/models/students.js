@@ -10,7 +10,7 @@
 
 
 const Sequelize=require('sequelize');
-//const index=require('../index')
+
 const db = require('../db');
 
 const Students= db.define('students', {
@@ -31,13 +31,17 @@ const Students= db.define('students', {
 		}
 	},
 	gpa:{
-		type: Sequelize.FLOAT
+		type: Sequelize.FLOAT,
+		validate:{
+			max:4.0,
+			min:0.0
+		}
 
 	},
 	name:{
 		type: Sequelize.VIRTUAL,
 		get(){
-			return this.firstName + '' + this.lastName
+			return this.firstName + ' ' + this.lastName
 		}
 
 	}

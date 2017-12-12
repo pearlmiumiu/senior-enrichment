@@ -28,7 +28,7 @@ export default class CreateNewCampus extends Component {
 	}
     
     handleSubmit(event){
-    	//console.log('event submit happend......', event);
+    	
     	event.preventDefault();
     	store.dispatch(createCampus({name:this.state.campusReducer.newCampusNameEntry}));
     }

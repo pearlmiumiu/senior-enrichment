@@ -6,7 +6,7 @@ import campusReducer from '../reducers/campusReducer';
 import {fetchCampuses} from '../reducers/campusReducer';
 
 export default class Campuses extends Component {
-
+  
   constructor() {
     super();
     this.state = store.getState();

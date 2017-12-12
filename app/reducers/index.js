@@ -7,17 +7,7 @@ import campusReducer from './campusReducer'
 
 const rootReducer = combineReducers({campusReducer, studentReducer})
 
-// const initialState = {}
- 
-// const rootReducer = function(state = initialState, action) {
-//   switch(action.type) {
-//     default: return state
-//   }
-// };
- 
+
 
 export default rootReducer;
 
-
-// //export action creators
-// ///.....need add stuff
